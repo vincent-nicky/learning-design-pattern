@@ -1,8 +1,11 @@
 package com.wsj.demo3;
 
+import com.wsj.demo3.factory.OperationFactory;
+import com.wsj.demo3.abstract1.Operation;
+
 import java.util.Scanner;
 
-// 封装
+// 封装+解耦 =》 简单工厂模式
 public class CalTest {
 
 	public static void main(String[] args){
@@ -20,8 +23,11 @@ public class CalTest {
 			String strOperate = sc.nextLine();
 			System.out.println("请输入数字B：");	
 			double numberB = Double.parseDouble(sc.nextLine());
-			
-			double result = Operation.getResult(numberA,numberB,strOperate);
+
+			// 创建工厂
+			Operation oper = OperationFactory.createOperate(strOperate);
+			// 工厂运作
+			double result = oper.getResult(numberA,numberB);
 
 			System.out.println("结果是："+result);	
 		}
